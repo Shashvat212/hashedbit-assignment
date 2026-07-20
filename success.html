@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Booking Success</title>
+</head>
+<body>
+
+<h1>Seat Booked Successfully</h1>
+
+<h2 id="booking"></h2>
+
+<p><b>Movie:</b> <span id="movie"></span></p>
+
+<p><b>Name:</b> <span id="name"></span></p>
+
+<p><b>Email:</b> <span id="email"></span></p>
+
+<p><b>Mobile:</b> <span id="mobile"></span></p>
+
+<script>
+
+document.getElementById("booking").innerHTML =
+"Booking ID : " + Math.floor(Math.random()*1000000);
+
+document.getElementById("movie").innerHTML =
+localStorage.getItem("movie");
+
+document.getElementById("name").innerHTML =
+localStorage.getItem("name");
+
+document.getElementById("email").innerHTML =
+localStorage.getItem("email");
+
+document.getElementById("mobile").innerHTML =
+localStorage.getItem("mobile");
+
+</script>
+
+</body>
+</html>

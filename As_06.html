@@ -1,0 +1,59 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script crossorigin src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      const { useState } = React;
+
+      function TodoApp() {
+        const [task, setTask] = useState('');
+        const [todoList, setTodoList] = useState([]);
+
+        const addTask = () => {
+          if (task.trim() === '') return;
+          const updatedList = [...todoList, task].sort((a, b) => a.localeCompare(b));
+          setTodoList(updatedList);
+          setTask('');
+        };
+
+        const deleteTask = (index) => {
+          const filteredList = todoList.filter((_, i) => i !== index);
+          setTodoList(filteredList);
+        };
+
+        return (
+          <div style={{ padding: '20px' }}>
+            <h2>To-Do List</h2>
+            <input
+              value={task}
+              onChange={(e) => setTask(e.target.value)}
+              placeholder="Enter a task"
+            />
+            <button onClick={addTask}>Add Task</button>
+
+            <ul>
+              {todoList.map((item, index) => (
+                <li key={index}>
+                  {item}
+                  <button onClick={() => deleteTask(index)} style={{ marginLeft: '10px' }}>
+                    Delete
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </div>
+        );
+      }
+
+      ReactDOM.render(<TodoApp />, document.getElementById('root'));
+    </script>
+  </body>
+</html>
+
+  
+

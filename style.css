@@ -1,0 +1,24 @@
+body{
+    font-family: Arial;
+    background:#f5f5f5;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
+    padding:20px;
+}
+
+.movie{
+    text-align:center;
+    background:white;
+    padding:10px;
+    border-radius:8px;
+    box-shadow:0 0 10px gray;
+}
+
+.movie img{
+    width:180px;
+    height:250px;
+}

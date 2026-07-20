@@ -1,0 +1,107 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IPL Points Table 2022</title>
+
+  <!-- React -->
+  <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+
+  <!-- Babel -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background: #f4f4f4;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    table {
+      width: 80%;
+      margin: auto;
+      border-collapse: collapse;
+      background: white;
+    }
+
+    th,
+    td {
+      border: 1px solid #ddd;
+      padding: 10px;
+      text-align: center;
+    }
+
+    th {
+      background-color: #007bff;
+      color: white;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    const { useState, useEffect } = React;
+
+    function IplPointsTable() {
+      const [data, setData] = useState([]);
+
+      useEffect(() => {
+        fetch("https://my-json-server.typicode.com/FreSauce/json-ipl/data")
+          .then((response) => response.json())
+          .then((json) => {
+            // Sort by NRR in ascending order
+            const sortedData = json.sort((a, b) => a.NRR - b.NRR);
+            setData(sortedData);
+          })
+          .catch((error) => console.error("Error fetching data:", error));
+      }, []);
+
+      return (
+        <div>
+          <h1>IPL Points Table 2022</h1>
+
+          <table>
+            <thead>
+              <tr>
+                <th>Team</th>
+                <th>Matches</th>
+                <th>Won</th>
+                <th>Lost</th>
+                <th>Points</th>
+                <th>NRR</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              {data.map((team, index) => (
+                <tr key={index}>
+                  <td>{team.Team}</td>
+                  <td>{team.Matches}</td>
+                  <td>{team.Won}</td>
+                  <td>{team.Lost}</td>
+                  <td>{team.Points}</td>
+                  <td>{team.NRR}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      );
+    }
+
+    ReactDOM.render(<IplPointsTable />, document.getElementById("root"));
+  </script>
+</body>
+</html>

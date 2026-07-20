@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Booking Form</title>
+</head>
+<body>
+
+<h1>Book Your Seat</h1>
+
+<form onsubmit="bookSeat(event)">
+
+<input type="text" id="name" placeholder="Enter Name" required><br><br>
+
+<input type="email" id="email" placeholder="Enter Email" required><br><br>
+
+<input type="text" id="mobile" placeholder="Enter Mobile" required><br><br>
+
+<button type="submit">Submit</button>
+
+</form>
+
+<script>
+
+function bookSeat(e){
+
+e.preventDefault();
+
+localStorage.setItem("name",document.getElementById("name").value);
+
+localStorage.setItem("email",document.getElementById("email").value);
+
+localStorage.setItem("mobile",document.getElementById("mobile").value);
+
+window.location="success.html";
+
+}
+
+</script>
+
+</body>
+</html>
